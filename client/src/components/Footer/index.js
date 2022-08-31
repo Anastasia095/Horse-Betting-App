@@ -15,7 +15,9 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>&copy; {new Date().getFullYear()} - Tech Friends</h4>
+        <h4>&copy; {new Date().getFullYear()} - Horse Race Betting</h4>
+        <h6>If you or someone you know has a gambling problem and wants help, call 1-800-Gambler
+        </h6>
       </div>
     </footer>
   );
