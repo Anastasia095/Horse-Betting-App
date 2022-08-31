@@ -4,21 +4,21 @@ const axios = require("axios");
 
 
 //This API works, just need to figure our how to pass the data over to the UpcomingEvents for rendering
-const options = {
-    method: 'GET',
-    url: 'https://horse-racing-usa.p.rapidapi.com/racecards',
-    params: { date: '2022-08-31' },
-    headers: {
-        'X-RapidAPI-Key': 'cb4bee5a1amsh26c0be09d81f012p19f5bdjsn7964190293ea',
-        'X-RapidAPI-Host': 'horse-racing-usa.p.rapidapi.com'
-    }
-};
+// const options = {
+//     method: 'GET',
+//     url: 'https://horse-racing-usa.p.rapidapi.com/racecards',
+//     params: { date: '2022-08-31' },
+//     headers: {
+//         'X-RapidAPI-Key': 'cb4bee5a1amsh26c0be09d81f012p19f5bdjsn7964190293ea',
+//         'X-RapidAPI-Host': 'horse-racing-usa.p.rapidapi.com'
+//     }
+// };
 
-axios.request(options).then(function (response) {
-    console.log(response.data[0].course);
-}).catch(function (error) {
-    console.error(error);
-});
+// axios.request(options).then(function (response) {
+//     console.log(response.data[0].course);
+// }).catch(function (error) {
+//     console.error(error);
+// });
 
 const UpcomingEvents = () => {
 
