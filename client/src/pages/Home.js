@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
+import UpcomingEvents from '../components/UpcomingRaces';
 
 import { QUERY_PROFILES } from '../utils/queries';
 
@@ -16,9 +16,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of friends..."
+            <UpcomingEvents
+              // profiles={profiles}
+              // title="Upcoming Races"
             />
           )}
         </div>
