@@ -1,0 +1,49 @@
+:root {
+    --text: gold;
+}
+#horses {
+    background-image: url('https://static.americasbestracing.net/s3fs-public/styles/large_hero_16_9/public/article/warofwillpreaknessstretcheclipse.JPG?W9V7dE7sYm2GxvaeD9hLtzLub52lgRqq&itok=eOaD0okJ&c=cd787e0c8dbd7217e1c390dd8ddcf7b5');
+    max-height: none;
+    background-size: cover;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#signupbox {
+    position: relative;
+    top: 20vh;
+    left: 30vh;
+    height: 45vh;
+    width: 60vh;
+    background-color: rgba(34, 36, 36, 0.8);
+}
+#main-schedule h1, #signupbox h1 {
+    font-size: 300%;
+    color: var(--text);
+    padding: 3vh;
+}
+#signupbox button {
+    font-size: 200%;
+    color: var(--text);
+    display: inline-block;
+    background-color: black;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    text-align: center;
+    padding: 8px;
+    width: 31vh;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 13vh;
+}
+#main-schedule {
+    padding: 10vh;
+}
+.table {
+    border: solid .5px gray;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.198);
+}
