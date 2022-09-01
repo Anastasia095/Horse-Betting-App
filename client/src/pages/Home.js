@@ -6,12 +6,14 @@ import UpcomingEvents from '../components/UpcomingRaces';
 import { QUERY_PROFILES } from '../utils/queries';
 import '../home.css'
 import MainSchedule from '../components/MainSchedule';
+import Header from '../components/Header';
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
   const profiles = data?.profiles || [];
 
   return (
     <main>
+      <Header />
       <div id="horses">
         <div id="signupbox">
           <h1>Hundreds of Races Every Week!</h1>
