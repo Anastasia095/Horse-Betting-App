@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Races } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -18,9 +18,21 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    races: async () => {
+      const racesData = await Races.find()
+      return racesData
+    },
   },
 
   Mutation: {
+    addRaces: async (root, args) => {
+      
+      const newRaceData = new Races({ age: args.age, canceled: args.canceled, course: args.course, date: args.date,  distance: args.distance, finished: args.finished, id_race: args.id_race })
+
+      await newRaceData.save();
+      
+      return newRaceData;
+    },
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
       const token = signToken(profile);
