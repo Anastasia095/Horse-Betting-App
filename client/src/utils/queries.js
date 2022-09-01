@@ -29,3 +29,13 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_RACES = gql`
+  query Races {
+    races {
+      date
+      course
+      age
+    }
+  }
+`;
