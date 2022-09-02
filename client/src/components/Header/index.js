@@ -1,54 +1,9 @@
 // import React from 'react';
 // import { Link } from 'react-router-dom';
 
-// import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
-// const Header = () => {
-//   const logout = (event) => {
-//     event.preventDefault();
-//     Auth.logout();
-//   };
-//   return (
-//     <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
-//       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-//         <Link className="text-dark" to="/">
-//           <h1 className="m-0" style={{ fontSize: '3rem' }}>
-//           Horse Race Betting
-//           </h1>
-//         </Link>
-//         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-//           Bet on horses and predicting Horse Racing Results
-//         </p>
-//         <div>
-//           {Auth.loggedIn() ? (
-//             <>
-//               <Link className="btn btn-lg btn-primary m-2" to="/me">
-//                 View My Profile
-//               </Link>
-//               <button className="btn btn-lg btn-light m-2" onClick={logout}>
-//                 Logout
-//               </button>
-//               <Link className="btn btn-lg btn-light m-2" to="/">
-//                 Home
-//               </Link>
-//             </>
-//           ) : (
-//             <>
-//               <Link className="btn btn-lg btn-primary m-2" to="/login">
-//                 Login
-//               </Link>
-//               <Link className="btn btn-lg btn-light m-2" to="/signup">
-//                 Signup
-//               </Link>
-//             </>
-//           )}
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
 
-// export default Header;
 
 import {
   Box,
@@ -76,7 +31,10 @@ import {
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <Box>
       <Flex
@@ -120,12 +78,12 @@ export default function WithSubnavigation() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Button
+          {/* <Button
             as={'a'}
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
-            href={'#'}>
+            href={'/login'}>
             Sign In
           </Button>
           <Button
@@ -134,12 +92,36 @@ export default function WithSubnavigation() {
             fontWeight={600}
             color={'white'}
             bg={'pink.400'}
-            href={'#'}
+            href={'/signup'}
             _hover={{
               bg: 'pink.300',
             }}>
             Sign Up
+          </Button> */}
+          {Auth.loggedIn() ? (
+            <>
+              <Button  as={'a'} className="btn btn-lg btn-primary m-2" variant={'link'} href={'/me'}>
+                View My Profile
+              </Button>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+            <Button
+            as={'a'}
+            fontSize={'sm'}
+            fontWeight={400}
+            variant={'link'}
+            href={'/login'}>
+            Sign In
           </Button>
+              <Button className="btn btn-lg btn-light m-2" to="/signup">
+                Signup
+              </Button>
+            </>
+          )}
         </Stack>
       </Flex>
 
