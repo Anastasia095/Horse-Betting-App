@@ -41,8 +41,8 @@ const resolvers = {
       
       return newRaceData;
     },
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    addProfile: async (parent, { name, email, password, birthdate }) => {
+      const profile = await Profile.create({ name, email, password, birthdate });
       const token = signToken(profile);
 
       return { token, profile };

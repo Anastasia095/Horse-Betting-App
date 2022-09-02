@@ -117,7 +117,7 @@ export default function WithSubnavigation() {
             href={'/login'}>
             Sign In
           </Button>
-              <Button className="btn btn-lg btn-light m-2" to="/signup">
+              <Button as={'a'} className="btn btn-lg btn-light m-2" variant={'link'} href={'/signup'}>
                 Signup
               </Button>
             </>
