@@ -23,7 +23,7 @@ const resolvers = {
       return racesData
     },
     racesToday: async (parent, args, context) => {
-      const racesTodayData = await Races.find({date: args}).exec()
+      const racesTodayData = await Races.find({date: args.date}).exec()
       return racesTodayData
     },
     // racesToday: async () => {
