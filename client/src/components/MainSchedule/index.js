@@ -23,9 +23,9 @@ const MainSchedule = () => {
         return <div>Loading...</div>;
       }
     return (
-        <div>
+        <div className='middle'>
             <h1>Race Track Schedule</h1>
-            <TableContainer class='table'>
+            <TableContainer className='table'>
                 <Table variant='striped' colorScheme='gray'>
                     <Thead>
                         <Tr>
@@ -38,7 +38,7 @@ const MainSchedule = () => {
                         <Tr>
                             <Td>2021-03-18</Td>
                             <Td>Pennsylvania Derby</Td>
-                            <Td>{raceData[0].course}</Td>
+                            {/* <Td>{raceData[0].course}</Td> */}
                         </Tr>
                         <Tr>
                             <Td>2022-04-07</Td>

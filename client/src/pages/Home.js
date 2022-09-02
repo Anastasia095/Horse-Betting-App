@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import UpcomingEvents from '../components/UpcomingRaces';
 
 import { QUERY_PROFILES } from '../utils/queries';
-import '../home.css'
+import '../css/home.css'
 import MainSchedule from '../components/MainSchedule';
 import Header from '../components/Header';
 const Home = () => {
