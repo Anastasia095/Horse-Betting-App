@@ -1,11 +1,13 @@
 //added localStorage package to keep track of days
 const { Races } = require('../models');
 const axios = require("axios");
+var moment = require('moment');
 
 const options = {
     method: 'GET',
     url: 'https://horse-racing-usa.p.rapidapi.com/results',
-    params: { date: '2021-03-18' },
+    params: { date: moment().format('YYYY[-]MM[-]DD')  },
+    
     headers: {
         'X-RapidAPI-Key': 'cb4bee5a1amsh26c0be09d81f012p19f5bdjsn7964190293ea',
         'X-RapidAPI-Host': 'horse-racing-usa.p.rapidapi.com'
@@ -44,8 +46,6 @@ exports.runOncePerDay = () => {
     }).catch(function (error) {
         console.error(error);
     });
-    // return data;
 }
 
-//   module.exports = runOncePerDay;
 
