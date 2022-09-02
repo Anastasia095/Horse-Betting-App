@@ -11,6 +11,7 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
+    birthdate: '',
   });
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
@@ -75,6 +76,14 @@ const Signup = () => {
                   name="password"
                   type="password"
                   value={formState.password}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="MM/DD/YYY"
+                  name="birthdate"
+                  type="date"
+                  value={formState.birthdate}
                   onChange={handleChange}
                 />
                 <button
