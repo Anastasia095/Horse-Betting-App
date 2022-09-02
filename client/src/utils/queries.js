@@ -39,3 +39,13 @@ export const QUERY_RACES = gql`
     }
   }
 `;
+
+export const QUERY_RACES_TODAY = gql`
+  query racesToday($date: String) {
+    races(date: $date) {
+      date
+      course
+      age
+    }
+  }
+`;

@@ -27,6 +27,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    racesToday(date: String!): [Races]
     races: [Races]
     profiles: [Profile]!
     profile(profileId: ID!): Profile

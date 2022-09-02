@@ -17,8 +17,6 @@ const MainSchedule = () => {
 
     const { loading, data } = useQuery(QUERY_RACES);
     const raceData = data?.races || [];
-    // console.log(raceData)
-    // console.log(raceData[0].course)
     if (loading) {
         return <div>Loading...</div>;
     }

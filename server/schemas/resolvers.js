@@ -22,6 +22,14 @@ const resolvers = {
       const racesData = await Races.find()
       return racesData
     },
+    racesToday: async (parent, args, context) => {
+      const racesTodayData = await Races.find({date: args}).exec()
+      return racesTodayData
+    },
+    // racesToday: async () => {
+    //   const racesTodayData = await Races.find()
+    //   return racesTodayData
+    // },
   },
 
   Mutation: {
