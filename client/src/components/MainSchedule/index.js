@@ -21,9 +21,9 @@ const MainSchedule = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div>
+        <div className='middle'>
             <h1>Race Track Schedule</h1>
-            <TableContainer class='table'>
+            <TableContainer className='table'>
                 <Table variant='striped' colorScheme='gray'>
                     <Thead>
                         <Tr>

@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 
 import SkillsList from '../components/SkillsList';
 import SkillForm from '../components/SkillForm';
+import ProfileNav from '../components/ProfileNav';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
@@ -35,15 +36,20 @@ const Profile = () => {
 
   if (!profile?.name) {
     return (
+      <div>
+        <ProfileNav />
       <h4>
         You need to be logged in to see your profile page. Use the navigation
         links above to sign up or log in!
       </h4>
+      </div>
+      
     );
   }
 
   return (
     <div>
+      <ProfileNav />
       <h2 className="card-header">
         {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
         skills...
@@ -55,7 +61,6 @@ const Profile = () => {
           isLoggedInUser={!profileId && true}
         />
       )}
-
       <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <SkillForm profileId={profile._id} />
       </div>
