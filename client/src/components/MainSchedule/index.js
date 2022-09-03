@@ -11,11 +11,15 @@ import {
 } from '@chakra-ui/react'
 
 import { useQuery } from '@apollo/client';
-import { QUERY_RACES } from '../../utils/queries';
+import { QUERY_RACES_TODAY } from '../../utils/queries';
 
 const MainSchedule = () => {
 
-    const { loading, data } = useQuery(QUERY_RACES);
+    const { loading, data } = useQuery(QUERY_RACES_TODAY, {
+        variables: {
+            "date": "2022-09-02"
+          },
+      });
     const raceData = data?.races || [];
     if (loading) {
         return <div>Loading...</div>;
