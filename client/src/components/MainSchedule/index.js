@@ -17,11 +17,9 @@ const MainSchedule = () => {
 
     const { loading, data } = useQuery(QUERY_RACES);
     const raceData = data?.races || [];
-    // console.log(raceData)
-    // console.log(raceData[0].course)
     if (loading) {
         return <div>Loading...</div>;
-      }
+    }
     return (
         <div className='middle'>
             <h1>Race Track Schedule</h1>
@@ -35,21 +33,13 @@ const MainSchedule = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        <Tr>
-                            <Td>2021-03-18</Td>
-                            <Td>Pennsylvania Derby</Td>
-                            {/* <Td>{raceData[0].course}</Td> */}
-                        </Tr>
-                        <Tr>
-                            <Td>2022-04-07</Td>
-                            <Td>Man o’ War Stakes</Td>
-                            <Td>Belmont Park</Td>
-                        </Tr>
-                        <Tr>
-                            <Td>2022-10-01</Td>
-                            <Td>Shadwell Turf Mile</Td>
-                            <Td>Keeneland</Td>
-                        </Tr>
+                        {raceData.map(race => (
+                            <Tr>
+                                <Td>{race.date}</Td>
+                                <Td>{race.age}</Td>
+                                <Td>{race.course}</Td>
+                            </Tr>
+                        ))}
                     </Tbody>
                     <Tfoot>
                         <Tr>

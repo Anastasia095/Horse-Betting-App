@@ -7,10 +7,10 @@ const Races = () => {
   return (
     <div>
       <Header />
-      <main>
+      <div className='racepage'>
         <RaceCalendar/>
         <MainSchedule/>
-      </main> 
+      </div> 
     </div>
   );
 };

@@ -22,6 +22,14 @@ const resolvers = {
       const racesData = await Races.find()
       return racesData
     },
+    racesToday: async (parent, args, context) => {
+      const racesTodayData = await Races.find({date: args.date}).exec()
+      return racesTodayData
+    },
+    // racesToday: async () => {
+    //   const racesTodayData = await Races.find()
+    //   return racesTodayData
+    // },
   },
 
   Mutation: {
@@ -33,8 +41,8 @@ const resolvers = {
       
       return newRaceData;
     },
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    addProfile: async (parent, { name, email, password, birthdate }) => {
+      const profile = await Profile.create({ name, email, password, birthdate });
       const token = signToken(profile);
 
       return { token, profile };

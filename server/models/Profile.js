@@ -19,6 +19,11 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  birthdate: {
+    type: String,
+    required: true,
+  },
+
   skills: [
     {
       type: String,
