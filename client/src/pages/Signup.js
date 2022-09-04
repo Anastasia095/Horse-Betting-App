@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
-
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutations';
-
 import Auth from '../utils/auth';
+import moment from 'moment'
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -18,6 +16,26 @@ const Signup = () => {
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
   // update state based on form input changes
+
+  function validate(date) {
+    console.log("validate is CALLED")
+    var eightYearsAgo = moment().subtract("years", 21);
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+      // INVALID DATE
+      console.log("INVALID DATE")
+    } else if (eightYearsAgo.isAfter(birthday)) {
+      console.log("21+")
+      formState.catcher = false;
+      return false;
+    } else {
+      console.log("<21")
+      formState.catcher = true;
+      return true;
+    }
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -25,23 +43,23 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+    console.log(formState);
   };
 
   // submit form
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
-
     try {
       const { data } = await addProfile({
         variables: { ...formState },
       });
-
       Auth.login(data.addProfile.token);
     } catch (e) {
       console.error(e);
     }
   };
+
 
   return (
     <main className="flex-row justify-center mb-4">
@@ -89,9 +107,11 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
+                  disabled={validate(formState.birthdate)}
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
+                  onChange={handleChange}
                 >
                   Submit
                 </button>

@@ -11,19 +11,26 @@ import {
 } from '@chakra-ui/react'
 
 import { useQuery } from '@apollo/client';
-import { QUERY_RACES } from '../../utils/queries';
+import { QUERY_RACES_TODAY } from '../../utils/queries';
+var moment = require('moment');
 
 const MainSchedule = () => {
 
-    const { loading, data } = useQuery(QUERY_RACES);
-    const raceData = data?.races || [];
+    console.log(moment().format('YYYY[-]MM[-]DD'))
+    const { data, loading } = useQuery(QUERY_RACES_TODAY, {
+        variables: {
+            date: moment().format('YYYY[-]MM[-]DD')
+        }
+    });
+
+    const raceData = data?.racesToday || [];
     if (loading) {
         return <div>Loading...</div>;
     }
     return (
-        <div>
+        <div className='middle'>
             <h1>Race Track Schedule</h1>
-            <TableContainer class='table'>
+            <TableContainer className='table'>
                 <Table variant='striped' colorScheme='gray'>
                     <Thead>
                         <Tr>

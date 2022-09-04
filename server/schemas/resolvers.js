@@ -23,13 +23,10 @@ const resolvers = {
       return racesData
     },
     racesToday: async (parent, args, context) => {
-      const racesTodayData = await Races.find({date: args.date}).exec()
+      const racesTodayData = await Races.find({date: { $regex: '.*' + args.date + '.*' }}).exec();
       return racesTodayData
     },
-    // racesToday: async () => {
-    //   const racesTodayData = await Races.find()
-    //   return racesTodayData
-    // },
+
   },
 
   Mutation: {

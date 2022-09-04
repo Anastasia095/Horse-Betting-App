@@ -35,7 +35,7 @@ exports.runOncePerDay = () => {
     const data = axios.request(options).then(function (response) {
 
         var result = response.data;
-        console.log(result);
+
 
         try {
             Races.insertMany(result);

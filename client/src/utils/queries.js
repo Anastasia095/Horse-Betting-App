@@ -43,9 +43,10 @@ export const QUERY_RACES = gql`
   }
 `;
 
+//racesToday refers to resolver that will be used for this Query, I spent all day on this... Ana
 export const QUERY_RACES_TODAY = gql`
   query racesToday($date: String) {
-    races(date: $date) {
+    racesToday(date: $date) {
       date
       course
       age
