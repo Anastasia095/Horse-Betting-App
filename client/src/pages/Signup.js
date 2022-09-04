@@ -15,6 +15,26 @@ const Signup = () => {
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
   // update state based on form input changes
+
+  function validate(date) {
+    console.log("validate is CALLED")
+    var eightYearsAgo = moment().subtract("years", 21);
+    var birthday = moment(date);
+
+    if (!birthday.isValid()) {
+      // INVALID DATE
+      console.log("INVALID DATE")
+    } else if (eightYearsAgo.isAfter(birthday)) {
+      console.log("21+")
+      formState.catcher = false;
+      return false;
+    } else {
+      console.log("<21")
+      formState.catcher = true;
+      return true;
+    }
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -22,36 +42,14 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+    console.log(formState);
   };
 
   // submit form
-  let catcher = false;
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
-
-      var date = formState.birthdate;
-
-      function validate(date) {
-        var eightYearsAgo = moment().subtract("years", 21);
-        var birthday = moment(date);
-
-        if (!birthday.isValid()) {
-          // INVALID DATE
-        } else if (eightYearsAgo.isAfter(birthday)) {
-          // 18+
-          alert("21+");
-          catcher =  false;
-        } else {
-          // 
-          alert("< 21");
-          catcher = true;
-        }
-      }
-      
-      validate(date);
-
       const { data } = await addProfile({
         variables: { ...formState },
       });
@@ -60,6 +58,7 @@ const Signup = () => {
       console.error(e);
     }
   };
+
 
   return (
     <main className="flex-row justify-center mb-4">
@@ -107,10 +106,11 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                 disabled= {catcher}
+                  disabled={validate(formState.birthdate)}
                   className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
+                  onChange={handleChange}
                 >
                   Submit
                 </button>
