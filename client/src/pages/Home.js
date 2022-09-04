@@ -2,12 +2,13 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 
 import UpcomingEvents from '../components/UpcomingRaces';
-
+import { useNavigate } from 'react-router-dom';
 import { QUERY_PROFILES } from '../utils/queries';
 import '../css/home.css'
 import MainSchedule from '../components/MainSchedule';
 import Header from '../components/Header';
 const Home = () => {
+  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_PROFILES);
   const profiles = data?.profiles || [];
 
@@ -17,7 +18,8 @@ const Home = () => {
       <div id="horses">
         <div id="signupbox">
           <h1>Hundreds of Races Every Week!</h1>
-          <button>Sign Up Now</button>
+          <button
+          onClick={() => navigate('/signup')}>Sign Up Now</button>
         </div>
       </div>
       <div id='main-schedule'>
