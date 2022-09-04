@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Races from './pages/Races';
+import Tournaments from './pages/Tournament';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -50,6 +51,10 @@ function App() {
               <Route 
                 path='/races'
                 element={<Races />}
+              />
+              <Route 
+                path='/tournaments'
+                element={<Tournaments />}
               />
               <Route 
                 path="/login" 
