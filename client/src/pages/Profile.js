@@ -47,13 +47,24 @@ const Profile = () => {
     );
   }
 
+  // if (!profile?.email) {
+  //   return (
+  //     <h4>
+  //       You need to be logged in to see your profile page. Use the navigation
+  //       links above to sign up or log in!
+  //     </h4>
+  //   );
+  // }
+console.log(profile)
   return (
     <div>
       <ProfileNav />
       <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
+        {profile.name} 
       </h2>
+      <h3 className="card-header">
+        {profile.email} 
+      </h3>
 
       {profile.skills?.length > 0 && (
         <SkillsList
