@@ -24,6 +24,7 @@ const resolvers = {
     },
     racesToday: async (parent, args, context) => {
       const racesTodayData = await Races.find({date: { $regex: '.*' + args.date + '.*' }}).exec()
+      console.log(racesTodayData);
       return racesTodayData
     },
 
