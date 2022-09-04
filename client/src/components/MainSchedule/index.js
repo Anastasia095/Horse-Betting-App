@@ -12,15 +12,18 @@ import {
 
 import { useQuery } from '@apollo/client';
 import { QUERY_RACES_TODAY } from '../../utils/queries';
+var moment = require('moment');
 
 const MainSchedule = () => {
 
-    const { loading, data } = useQuery(QUERY_RACES_TODAY, {
+    console.log(moment().format('YYYY[-]MM[-]DD'))
+    const { data, loading } = useQuery(QUERY_RACES_TODAY, {
         variables: {
-            "date": "2022-09-02"
-          },
-      });
-    const raceData = data?.races || [];
+            date: moment().format('YYYY[-]MM[-]DD')
+        }
+    });
+
+    const raceData = data?.racesToday || [];
     if (loading) {
         return <div>Loading...</div>;
     }
