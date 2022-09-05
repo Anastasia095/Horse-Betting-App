@@ -58,3 +58,15 @@
     width: 100%;
     height: auto;
   }
+.chakra-text svg, .chakra-text h1{
+  display: inline;
+}
+
+.chakra-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.chakra-text h1 {
+  padding-left: 5px;
+}
