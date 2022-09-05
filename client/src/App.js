@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Footer from './components/Footer';
+import OneRace from './pages/OneRace';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -51,6 +52,10 @@ function App() {
               <Route 
                 path='/races'
                 element={<Races />}
+              />
+              <Route
+                path='/races/:raceid'
+                element={<OneRace />}
               />
               <Route 
                 path='/tournaments'
