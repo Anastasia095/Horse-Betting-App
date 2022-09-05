@@ -34,6 +34,8 @@ exports.runOncePerDay = () => {
   }
   const data = axios.request(options).then(function (response) {
     var result = response.data;
+    console.log(result);
+    console.log(moment().format('YYYY[-]MM[-]DD'));
     async function init(i) {
       console.log(1);
       await sleep(i * 7000);
@@ -84,6 +86,7 @@ exports.runOncePerDay = () => {
       let i = 1;
       let b = 0;
     for(i; i <= result.length; i++) {
+      console.log("LENGTH TEST " + result.length);
         init(i);
     };
 
