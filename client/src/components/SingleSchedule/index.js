@@ -9,21 +9,22 @@ import {
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react'
-
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_RACES_TODAY } from '../../utils/queries';
+import { QUERY_HORSES } from '../../utils/queries';
 var moment = require('moment');
 
 const SingleSchedule = () => {
-
-    console.log(moment().format('YYYY[-]MM[-]DD'))
-    const { data, loading } = useQuery(QUERY_RACES_TODAY, {
+    const { raceid } = useParams();
+    console.log("===============>" + parseInt(raceid));
+    const { data, loading } = useQuery(QUERY_HORSES, {
         variables: {
-            date: moment().format('YYYY[-]MM[-]DD')
+            id_race: parseInt(raceid)
         }
-    });
-
-    const raceData = data?.racesToday || [];
+    }
+    );
+    console.log(data);
+    const horsesData = data?.horses || [];
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -43,14 +44,16 @@ const SingleSchedule = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                            <Tr>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td></Td>
-                            </Tr>
+                    {horsesData.map(horse => (
+                        <Tr>
+                            <Td>{horse.horse}</Td>
+                            <Td>{horse.jockey}</Td>
+                            <Td>{horse.trainer}</Td>
+                            <Td>{horse.age}</Td>
+                            <Td>{horse.number}</Td>
+                            <Td>{horse.position}</Td>
+                        </Tr>
+                        ))}
                     </Tbody>
                     <Tfoot>
                         <Tr>

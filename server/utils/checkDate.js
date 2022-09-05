@@ -34,12 +34,9 @@ exports.runOncePerDay = () => {
   }
   const data = axios.request(options).then(function (response) {
     var result = response.data;
-    console.log(result);
-    console.log(moment().format('YYYY[-]MM[-]DD'));
     async function init(i) {
-      console.log(1);
       await sleep(i * 7000);
-      apiscript(i, b);
+      apiscript(i);
     };
     function sleep(ms) {
       return new Promise((resolve) => {
@@ -47,9 +44,10 @@ exports.runOncePerDay = () => {
       });
     };
     function apiscript(i, b) {
-      console.log(i);
-      console.log(result[b].id_race);
-      var race_id = result[b].id_race;
+      console.log("==================>" + i);
+      console.log(result[i].id_race);
+      var race_id = result[i].id_race;
+      console.log("==================>" + race_id);
       const options2 = {
         method: 'GET',
         url: 'https://horse-racing-usa.p.rapidapi.com/race/'
@@ -64,13 +62,11 @@ exports.runOncePerDay = () => {
       axios.request(options2).then(function (response) {
         const horsesData = response.data.horses;
         horsesData.forEach(function (itm) {
-          itm.id_race = result[b].id_race;
+          itm.id_race = result[i].id_race;
           delete itm['odds'];
           delete itm['poolData'];
           delete itm['non-runner'];
         });
-        console.log(horsesData);
-
         try {
           Horses.insertMany(horsesData);
         } catch (err) {
@@ -81,12 +77,13 @@ exports.runOncePerDay = () => {
         console.error(error);
       });
 
-      i++;
+      // i++;
     }
-      let i = 1;
-      let b = 0;
-    for(i; i <= result.length; i++) {
-      console.log("LENGTH TEST " + result.length);
+      let i = 0;
+      // let b = 0;
+    for(i; i < result.length; i++) {
+      console.log(result.length);
+      console.log("Iteration " + i);
         init(i);
     };
 

@@ -43,7 +43,7 @@ export const QUERY_RACES = gql`
   }
 `;
 export const QUERY_HORSES = gql`
-  query horses($id_race: Number) {
+  query horses($id_race: Int) {
     horses(id_race: $id_race) {
       horse
       id_horse
