@@ -37,6 +37,7 @@ const MainSchedule = () => {
                             <Th>Date</Th>
                             <Th>Race</Th>
                             <Th>Track</Th>
+                            <Th>Race_ID</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -45,6 +46,7 @@ const MainSchedule = () => {
                                 <Td>{race.date}</Td>
                                 <Td>{race.age}</Td>
                                 <Td>{race.course}</Td>
+                                <Td>{race.id_race}</Td>
                             </Tr>
                         ))}
                     </Tbody>

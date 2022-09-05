@@ -26,9 +26,24 @@ const typeDefs = gql`
 
   }
 
-  
+  type Horses{
+    horse: String
+    id_horse: Int
+    jockey: String
+    trainer: String
+    age: Int
+    weight: String
+    number: Int
+    form: String
+    position: Int
+    distance_beaten: String
+    sp: String
+    id_race: Int
+
+  }
 
   type Query {
+    horses(id_race: Int): [Horses]
     racesToday(date: String): [Races]
     races: [Races]
     profiles: [Profile]!
@@ -38,6 +53,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addHorses(horse: String, id_horse: Int, jockey: String, trainer: String,  age: Int, weight: String, form: String, position: Int, distance_beaten: String, sp: String, id_race: Int): Horses
     addProfile(name: String!, email: String!, password: String!, birthdate: String!): Auth
     login(email: String!, password: String!): Auth
     addSkill(profileId: ID!, skill: String!): Profile
