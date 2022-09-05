@@ -10,6 +10,7 @@ import ProfileNav from '../components/ProfileNav';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
+import SimpleSidebar from '../components/SideBar';
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -58,7 +59,9 @@ const Profile = () => {
 console.log(profile)
   return (
     <div>
+      <SimpleSidebar />
       <ProfileNav />
+      
       <h2 className="card-header">
         {profile.name} 
       </h2>

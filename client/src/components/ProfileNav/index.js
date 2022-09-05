@@ -1,4 +1,10 @@
 import { ReactNode } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../../utils/queries';
+
+import Auth from '../../utils/auth';
+import SimpleSidebar from '../../components/SideBar';
 import {
   Box,
   Flex,
@@ -33,6 +39,14 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 export default function ProfileNav() {
+  const { profileId } = useParams();
+  const { data } = useQuery(
+    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
+    {
+      variables: { profileId: profileId },
+    }
+  );
+  const profile = data?.me || data?.profile || {};
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -69,7 +83,7 @@ export default function ProfileNav() {
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <p>{profile.name}</p>
                   </Center>
                   <br />
                   <MenuDivider />
