@@ -1,66 +1,52 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-const finalSpaceCharacters = [
-  {
-    id: 'gary',
-    name: 'Gary Goodspeed',
-    thumb: '/images/horse-race.jpg'
-  },
-  {
-    id: 'cato',
-    name: 'Little Cato',
-    thumb: '/images/horse-race.jpg'
-  },
-  {
-    id: 'kvn',
-    name: 'KVN',
-    thumb: '/images/horse-race.jpg'
-  },
-  {
-    id: 'mooncake',
-    name: 'Mooncake',
-    thumb: '/images/horse-race.jpg'
-  },
-  {
-    id: 'quinn',
-    name: 'Quinn Ergon',
-    thumb: '/images/horse-race.jpg'
-  }
-]
+import { useQuery } from '@apollo/client';
+import { QUERY_HORSES } from '../utils/queries';
+import { useParams } from 'react-router-dom';
+import {
+    Button,
+} from '@chakra-ui/react'
 
 function Tournament() {
-    const [characters, updateCharacters] = useState(finalSpaceCharacters);
-  
+    const { raceid } = useParams();
+    const { data, loading } = useQuery(QUERY_HORSES, {
+        variables: {
+            id_race: parseInt(raceid)
+        }
+    }
+    );
+    const horseData = data?.horses || [];
+    const [horses, updateHorses] = useState(horseData);
+    
     function handleOnDragEnd(result) {
       if (!result.destination) return;
-      
-      const items = Array.from(characters);
+      console.log(horses);
+      const items = Array.from(horses);
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
   
-      updateCharacters(items);
+      updateHorses(items);
       console.log(items);
     }
   
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Final Space Characters</h1>
+          <h1>Final Space horses</h1>
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="characters">
               {(provided) => (
                 <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                  {characters.map(({id, name, thumb}, index) => {
+                  {horseData.map(({id_horse, horse}, index) => {
                     return (
-                      <Draggable key={id} draggableId={id} index={index}>
+                      <Draggable key={id_horse} draggableId={horse} index={index}>
                         {(provided) => (
                           <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                             <div className="characters-thumb">
-                              <img src={thumb} alt={`${name} Thumb`} />
+                              <img src='/images/horse-race.jpg' alt={`${horse} Thumb`} />
                             </div>
                             <p>
-                              { name }
+                              { horse }
                             </p>
                           </li>
                         )}

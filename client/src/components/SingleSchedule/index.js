@@ -8,6 +8,7 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Button
 } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -31,6 +32,7 @@ const SingleSchedule = () => {
     return (
         <div className='middle'>
             <h1>Race Track Schedule</h1>
+            <Button as={'a'} className="btn btn-lg btn-light m-2" variant={'link'} href={'/placebet/' + raceid}>Place a Bet</Button>
             <TableContainer className='table'>
                 <Table variant='striped' colorScheme='gray'>
                     <Thead>

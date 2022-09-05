@@ -16,6 +16,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Footer from './components/Footer';
 import OneRace from './pages/OneRace';
+import PlaceBet from './pages/PlaceBet';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,7 +50,7 @@ function App() {
                 path="/Home" 
                 element={<Home />}
               />
-              <Route 
+              <Route
                 path='/races'
                 element={<Races />}
               />
@@ -57,25 +58,29 @@ function App() {
                 path='/races/:raceid'
                 element={<OneRace />}
               />
-              <Route 
+              <Route
                 path='/tournaments'
                 element={<Tournaments />}
               />
-              <Route 
-                path="/login" 
+              <Route
+                path="/login"
                 element={<Login />}
               />
-              <Route 
-                path="/signup" 
+              <Route
+                path="/signup"
                 element={<Signup />}
               />
-              <Route 
-                path="/me" 
+              <Route
+                path="/me"
                 element={<Profile />}
               />
-              <Route 
+              <Route
                 path="/profiles/:profileId"
                 element={<Profile />}
+              />
+              <Route
+                path="/placebet/:raceid"
+                element={<PlaceBet />}
               />
             </Routes>
           </div>
