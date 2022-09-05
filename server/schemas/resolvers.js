@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Races } = require('../models');
+const { Profile, Races, Horses } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -26,10 +26,22 @@ const resolvers = {
       const racesTodayData = await Races.find({date: { $regex: '.*' + args.date + '.*' }}).exec();
       return racesTodayData
     },
+    horses: async (parent, args, context) => {
+      const horsesData = await Horses.find({id_race: args.id_race}).exec();
+      return horsesData
+    },
 
   },
 
   Mutation: {
+    addHorses: async (root, args) => {
+      
+      const newHorsesData = new Horses({ horse: args.horse, id_horse: args.id_horse, jockey: args.jockey, trainer: args.trainer,  age: args.age, weight: args.weight, number: args.number, form: args.form, position: args.position, distance_beaten: args.distance_beaten, sp: args.sp, id_race: args.id_race })
+
+      await newHorsesData.save();
+      
+      return newHorsesData;
+    },
     addRaces: async (root, args) => {
       
       const newRaceData = new Races({ age: args.age, canceled: args.canceled, course: args.course, date: args.date,  distance: args.distance, finished: args.finished, id_race: args.id_race })

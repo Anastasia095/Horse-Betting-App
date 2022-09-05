@@ -39,7 +39,23 @@ export const QUERY_RACES = gql`
     }
   }
 `;
-
+export const QUERY_HORSES = gql`
+  query horses($id_race: Number) {
+    horses(id_race: $id_race) {
+      horse
+      id_horse
+      jockey
+      trainer
+      age
+      weight
+      form
+      position
+      distance_beaten
+      sp
+      id_race
+    }
+  }
+`;
 //racesToday refers to resolver that will be used for this Query, I spent all day on this... Ana
 export const QUERY_RACES_TODAY = gql`
   query racesToday($date: String) {
@@ -47,6 +63,7 @@ export const QUERY_RACES_TODAY = gql`
       date
       course
       age
+      id_race
     }
   }
 `;
