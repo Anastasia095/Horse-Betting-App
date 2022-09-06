@@ -1,9 +1,24 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Races, Horses } = require('../models');
+const { Profile, Races, Horses, Bets, Order } = require('../models');
 const { signToken } = require('../utils/auth');
+const stripe = require('stripe')('pk_test_51LeOcxHKuC9rfCQDnjk3AtrdM8uJa5Aiqh0IdrArpPTgskuQgPH26o3jB5amJFHRiV7rtyzhSnWUsPgqmvnsQVXD000srH70Al');
 
 const resolvers = {
   Query: {
+    bets: async (parent, { horse }) => {
+      const params = {};
+
+      if (horse) {
+        params.horse = {
+          $regex: horse
+        };
+      }
+
+      return await Bets.find(params);
+    },
+    bet: async (parent, { _id }) => {
+      return await Bets.findById(_id);
+    },
     profiles: async () => {
       return Profile.find();
     },
@@ -30,10 +45,52 @@ const resolvers = {
       const horsesData = await Horses.find({id_race: args.id_race}).exec();
       return horsesData
     },
+  checkout: async (parent, args, context) => {
+    const bet = new Bet({ products: args.products });
 
-  },
+    for (let i = 0; i < products.length; i++) {
+      const product = await stripe.products.create({
+        name: products[i].name,
+        description: products[i].description,
+      });
+
+      const price = await stripe.prices.create({
+        product: product.id,
+        unit_amount: products[i].price * 100,
+        currency: 'usd',
+      });
+
+      line_items.push({
+        price: price.id,
+        quantity: 1
+      });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items,
+      mode: 'payment',
+      success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${url}/`
+    });
+
+    return { session: session.id };
+  }
+},
 
   Mutation: {
+    addOrder: async (parent, { bets }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ bets });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     addHorses: async (root, args) => {
       
       const newHorsesData = new Horses({ horse: args.horse, id_horse: args.id_horse, jockey: args.jockey, trainer: args.trainer,  age: args.age, weight: args.weight, number: args.number, form: args.form, position: args.position, distance_beaten: args.distance_beaten, sp: args.sp, id_race: args.id_race })

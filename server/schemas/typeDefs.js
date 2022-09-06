@@ -15,6 +15,22 @@ const typeDefs = gql`
     profile: Profile
   }
 
+  type Checkout {
+    session: ID
+  }
+
+  type Bets {
+    _id: ID
+    name: String
+    price: Float
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    bets: [Bets]
+  }
+
   type Races{
     age: String
     canceled: Int
@@ -43,16 +59,21 @@ const typeDefs = gql`
   }
 
   type Query {
+    bets(horse: String): [Bets]
+    bet(_id: ID!): Bets
+    order(_id: ID!): Order
     horses(id_race: Int): [Horses]
     racesToday(date: String): [Races]
     races: [Races]
     profiles: [Profile]!
     profile(profileId: ID!): Profile
+    checkout(products: [ID]!): Checkout
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
   }
 
   type Mutation {
+    addOrder(bets: [ID]!): Order
     addHorses(horse: String, id_horse: Int, jockey: String, trainer: String,  age: Int, weight: String, form: String, position: Int, distance_beaten: String, sp: String, id_race: Int): Horses
     addProfile(name: String!, email: String!, password: String!, birthdate: String!): Auth
     login(email: String!, password: String!): Auth
