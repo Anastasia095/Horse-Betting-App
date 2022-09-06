@@ -18,10 +18,24 @@ function Placebet() {
             id_race: parseInt(raceid)
         }
     });
-    if(error){
+    if (error) {
         console.log(error);
     }
     const [horses, updateHorses] = useState([]);
+    const [formState, setFormState] = useState({
+        price: ''
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+        console.log(formState.price);
+    };
+
 
     useEffect(() => {
         if (loading === false && data) {
@@ -40,7 +54,9 @@ function Placebet() {
     const [addBets, { err }] = useMutation(ADD_BETS);
     const bet = (event) => {
         event.preventDefault();
-        console.log(err);
+        if (err) {
+            console.log(err);
+        }
         console.log(horses);
 
         try {
@@ -48,7 +64,7 @@ function Placebet() {
                 variables: {
                     horse: horses[0].id_horse,
                     //currently hardcoded
-                    price: 3.25,
+                    price: parseFloat(formState.price),
                 },
             });
 
@@ -88,9 +104,16 @@ function Placebet() {
                 </DragDropContext>
             </header>
             <form>
-            <button className="btn btn-lg btn-light m-2" onClick={bet}>
-                Place a Bet!
-            </button>
+                <input
+                    className="form-input"
+                    placeholder="Enter bet amount"
+                    name="price"
+                    value={formState.price}
+                    onChange={handleChange}
+                />
+                <button className="btn btn-lg btn-light m-2" onClick={bet}>
+                    Place a Bet!
+                </button>
             </form>
         </div>
     );
