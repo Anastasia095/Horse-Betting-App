@@ -14,7 +14,6 @@ import Tournaments from './pages/Tournament';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Footer from './components/Footer';
 import Payment from './pages/Payment'
 import OneRace from './pages/OneRace';
 import PlaceBet from './pages/PlaceBet';
@@ -93,7 +92,6 @@ function App() {
               />
             </Routes>
           </div>
-          <Footer />
         </div>
       </Router>
     </ApolloProvider>
