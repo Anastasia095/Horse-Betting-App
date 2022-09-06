@@ -10,11 +10,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Races from './pages/Races';
+import Tournaments from './pages/Tournament';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Footer from './components/Footer';
 import Payment from './pages/Payment'
+import OneRace from './pages/OneRace';
+import PlaceBet from './pages/PlaceBet';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,19 +48,27 @@ function App() {
           <div>
             <Routes>
               <Route 
-                path="/" 
+                path="/Home" 
                 element={<Home />}
               />
-              <Route 
+              <Route
                 path='/races'
                 element={<Races />}
               />
-              <Route 
-                path="/login" 
+              <Route
+                path='/races/:raceid'
+                element={<OneRace />}
+              />
+              <Route
+                path='/tournaments'
+                element={<Tournaments />}
+              />
+              <Route
+                path="/login"
                 element={<Login />}
               />
-              <Route 
-                path="/signup" 
+              <Route
+                path="/signup"
                 element={<Signup />}
               />
                <Route 
@@ -68,9 +79,13 @@ function App() {
                 path="/me" 
                 element={<Profile />}
               />
-              <Route 
+              <Route
                 path="/profiles/:profileId"
                 element={<Profile />}
+              />
+              <Route
+                path="/placebet/:raceid"
+                element={<PlaceBet />}
               />
             </Routes>
           </div>

@@ -10,6 +10,7 @@ import ProfileNav from '../components/ProfileNav';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
+import SimpleSidebar from '../components/SideBar';
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -58,23 +59,7 @@ const Profile = () => {
 console.log(profile)
   return (
     <div>
-      <ProfileNav />
-      <h2 className="card-header">
-        {profile.name} 
-      </h2>
-      <h3 className="card-header">
-        {profile.email} 
-      </h3>
-
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
-        />
-      )}
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
-      </div>
+      <SimpleSidebar />
     </div>
   );
 };

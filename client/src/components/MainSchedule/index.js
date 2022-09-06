@@ -7,6 +7,7 @@ import {
     Th,
     Td,
     TableCaption,
+    Button,
     TableContainer,
 } from '@chakra-ui/react'
 
@@ -37,14 +38,16 @@ const MainSchedule = () => {
                             <Th>Date</Th>
                             <Th>Race</Th>
                             <Th>Track</Th>
+                            <Th>Race_ID</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
                         {raceData.map(race => (
                             <Tr>
-                                <Td>{race.date}</Td>
+                                <Td><Button as={'a'} className="btn btn-lg btn-light m-2" variant={'link'} href={'/races/' + race.id_race}>{race.date}</Button></Td>
                                 <Td>{race.age}</Td>
                                 <Td>{race.course}</Td>
+                                <Td>{race.id_race}</Td>
                             </Tr>
                         ))}
                     </Tbody>
