@@ -46,6 +46,10 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <div>
             <Routes>
+            <Route 
+                path="/" 
+                element={<Home />}
+              />
               <Route 
                 path="/Home" 
                 element={<Home />}
