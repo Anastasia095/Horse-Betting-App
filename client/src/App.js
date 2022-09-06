@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,6 +14,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Footer from './components/Footer';
+import Payment from './pages/Payment'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -59,6 +59,10 @@ function App() {
               <Route 
                 path="/signup" 
                 element={<Signup />}
+              />
+               <Route 
+                path="/payment" 
+                element={<Payment />}
               />
               <Route 
                 path="/me" 

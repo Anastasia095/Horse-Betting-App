@@ -33,8 +33,10 @@ exports.runOncePerDay = () => {
         return false;
     }
     const data = axios.request(options).then(function (response) {
+        console.log(response)
 
         var result = response.data;
+        console.log(response.data)
 
 
         try {
