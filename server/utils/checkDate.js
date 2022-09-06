@@ -5,7 +5,7 @@ var moment = require('moment');
 
 const options = {
   method: 'GET',
-  url: 'https://horse-racing-usa.p.rapidapi.com/results',
+  url: 'https://horse-racing-usa.p.rapidapi.com/racecards',
   params: { date: moment().format('YYYY[-]MM[-]DD') },
 
   headers: {
@@ -30,9 +30,13 @@ function hasOneDayPassed() {
 
 exports.runOncePerDay = () => {
   if (!hasOneDayPassed()) {
+    console.log("FALSE");
     return false;
   }
   const data = axios.request(options).then(function (response) {
+    console.log(response);
+    console.log(response.data);
+    console.log("Getting races");
     var result = response.data;
     async function init(i) {
       await sleep(i * 7000);
@@ -81,7 +85,9 @@ exports.runOncePerDay = () => {
     }
       let i = 0;
       // let b = 0;
+      console.log('length test' + result.length);
     for(i; i < result.length; i++) {
+      console.log("loop test")
       console.log(result.length);
       console.log("Iteration " + i);
         init(i);
