@@ -21,7 +21,8 @@ const typeDefs = gql`
 
   type Bets {
     _id: ID
-    name: String
+    user: ID
+    horse: Int
     price: Float
   }
 
@@ -59,7 +60,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    bets(horse: String): [Bets]
+    bets: [Bets]
     bet(_id: ID!): Bets
     order(_id: ID!): Order
     horses(id_race: Int): [Horses]
@@ -73,6 +74,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addBets(horse: Int!, price: Float): Bets
     addOrder(bets: [ID]!): Order
     addHorses(horse: String, id_horse: Int, jockey: String, trainer: String,  age: Int, weight: String, form: String, position: Int, distance_beaten: String, sp: String, id_race: Int): Horses
     addProfile(name: String!, email: String!, password: String!, birthdate: String!): Auth
