@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import RaceCalendar from '../components/Calendar';
 import MainSchedule from '../components/MainSchedule';
 import '../css/calendar.css'
+import Footer from '../components/Footer';
 const Races = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const Races = () => {
         <RaceCalendar/>
         <MainSchedule/>
       </div> 
+      <Footer />
     </div>
   );
 };

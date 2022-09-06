@@ -290,7 +290,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Tournament',
-    href: '#',
+    href: '/tournaments',
   },
   {
     label: 'Races',
