@@ -38,6 +38,8 @@ import {
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import EditForm from '../EditForm';
+import '../../css/editform.css'
 
 interface LinkItemProps {
   name: string;
@@ -78,8 +80,17 @@ export default function SidebarWithHeader({
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
+        <div class="EditForm">
+          <EditForm />
+          <div>
+            <h1>Billing Information</h1>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+        </div>        
       </Box>
+      
     </Box>
   );
 }
