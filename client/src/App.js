@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +7,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
 import Home from './pages/Home';
 import Races from './pages/Races';
 import Tournaments from './pages/Tournament';
@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Footer from './components/Footer';
+import Payment from './pages/Payment'
 import OneRace from './pages/OneRace';
 import PlaceBet from './pages/PlaceBet';
 
@@ -70,8 +71,12 @@ function App() {
                 path="/signup"
                 element={<Signup />}
               />
-              <Route
-                path="/me"
+               <Route 
+                path="/payment" 
+                element={<Payment />}
+              />
+              <Route 
+                path="/me" 
                 element={<Profile />}
               />
               <Route
