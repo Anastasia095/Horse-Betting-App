@@ -57,3 +57,12 @@ mutation Mutation($age: String, $canceled: Int, $course: String, $date: String, 
   }
   }
 `;
+export const ADD_BETS = gql`
+mutation Mutation($horse: Int!, $price: Float) {
+  addBets(horse: $horse, price: $price) {
+    user
+    horse
+    price
+  }
+}
+`;

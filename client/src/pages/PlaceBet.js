@@ -3,24 +3,28 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES } from '../utils/queries';
 import { useParams } from 'react-router-dom';
-import {
-    Button,
-} from '@chakra-ui/react'
+import { ADD_BETS } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+// import {
+//     Button,
+// } from '@chakra-ui/react'
 
 
 function Placebet() {
-    // let horseData = useGetData();
+
     const { raceid } = useParams();
     const { data, loading, error } = useQuery(QUERY_HORSES, {
         variables: {
             id_race: parseInt(raceid)
         }
     });
-
+    if(error){
+        console.log(error);
+    }
     const [horses, updateHorses] = useState([]);
 
     useEffect(() => {
-        if(loading === false && data){
+        if (loading === false && data) {
             updateHorses(data.horses);
         }
     }, [loading, data])
@@ -33,7 +37,26 @@ function Placebet() {
         items.splice(result.destination.index, 0, reorderedItem);
         updateHorses(items);
     }
+    const [addBets, { err }] = useMutation(ADD_BETS);
+    const bet = (event) => {
+        event.preventDefault();
+        console.log(err);
+        console.log(horses);
 
+        try {
+            const data = addBets({
+                variables: {
+                    horse: horses[0].id_horse,
+                    //currently hardcoded
+                    price: 3.25,
+                },
+            });
+
+        } catch (err) {
+            console.error(err);
+        }
+
+    };
     return (
         <div className="App">
             <header className="App-header">
@@ -64,9 +87,11 @@ function Placebet() {
                     </Droppable>
                 </DragDropContext>
             </header>
-            <p>
-                Images from <a href="https://final-space.fandom.com/wiki/Final_Space_Wiki">Final Space Wiki</a>
-            </p>
+            <form>
+            <button className="btn btn-lg btn-light m-2" onClick={bet}>
+                Place a Bet!
+            </button>
+            </form>
         </div>
     );
 }
