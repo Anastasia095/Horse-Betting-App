@@ -11,6 +11,7 @@ import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 import SimpleSidebar from '../components/SideBar';
+import '../css/home.css'
 
 const Profile = () => {
   const { profileId } = useParams();
