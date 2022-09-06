@@ -7,6 +7,7 @@ import { QUERY_PROFILES } from '../utils/queries';
 import '../css/home.css'
 import MainSchedule from '../components/MainSchedule';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 const Home = () => {
   const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_PROFILES);
@@ -37,6 +38,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
