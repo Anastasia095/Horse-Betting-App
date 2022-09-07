@@ -19,8 +19,11 @@ const Profile = () => {
     }
   );
 
-  const betsData = useQuery(QUERY_BETS);
-  console.log(betsData.data.bets);
+  // const betsData = useQuery(QUERY_BETS);
+  // const betsResults = data?.bets || data?.bets || {};
+  // console.log(betsData.data);
+  // var returned = betsData.data;
+  // console.log(returned.bets[0]);
   
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
@@ -37,7 +40,6 @@ const Profile = () => {
   if (!profile?.name) {
     return (
       <div>
-        <p>TEST</p>
         <SimpleSidebar />
       <h4>
         You need to be logged in to see your profile page. Use the navigation
