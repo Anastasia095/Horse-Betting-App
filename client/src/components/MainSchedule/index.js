@@ -30,7 +30,7 @@ const MainSchedule = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div class="homemiddle">
+        <div className="homemiddle">
             <h1>Race Track Schedule</h1>
             <TableContainer className='table'>
                 <Table variant='striped' colorScheme='gray'>
