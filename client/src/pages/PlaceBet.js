@@ -77,7 +77,7 @@ function Placebet() {
 
     };
     return (
-        <div className="App">
+        <div className="BetForm">
             <header className="App-header">
                 <h1>Final Space horses</h1>
                 <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -59,3 +59,26 @@ h1,
 h3 {
 	text-align: center;
 }
+.BetForm {
+	display: inline;
+	left: 475px;
+	width: 500px !important;
+	margin: none !important;
+}
+.BetForm form {
+	 display: inline !important;	 
+	 /*
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+	margin: 0 !important; */
+	left: 475px;
+	width: 500px !important;
+	height: 350px;
+	margin: none !important;
+}
+.insidebet {
+	left: 475px;
+	width: 500px !important;
+	margin: none !important;
+}
