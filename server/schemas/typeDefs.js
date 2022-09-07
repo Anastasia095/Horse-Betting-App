@@ -34,7 +34,7 @@ const typeDefs = gql`
 
   type Races{
     age: String
-    canceled: Int
+    canceled: String
     course: String
     date: String
     distance: String
@@ -82,7 +82,7 @@ const typeDefs = gql`
     addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
     removeSkill(skill: String!): Profile
-    addRaces(age: String, canceled: Int, course: String, date: String, distance: String, finished: Int, id_race: Int): Races
+    addRaces(age: String, canceled: String, course: String, date: String, distance: String, finished: Int, id_race: Int): Races
   }
 `;
 

@@ -5,16 +5,9 @@ const stripe = require('stripe')('pk_test_51LeOcxHKuC9rfCQDnjk3AtrdM8uJa5Aiqh0Id
 
 const resolvers = {
   Query: {
-    bets: async (parent, { horse }) => {
-      const params = {};
+    bets: async (parent, args, context) => {
 
-      if (horse) {
-        params.horse = {
-          $regex: horse
-        };
-      }
-
-      return await Bets.find(params);
+      return await Bets.find({ user: context.user._id });
     },
     bet: async (parent, { _id }) => {
       return await Bets.findById(_id);

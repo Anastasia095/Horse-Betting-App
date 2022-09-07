@@ -13,6 +13,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES } from '../../utils/queries';
+
 var moment = require('moment');
 
 const SingleSchedule = () => {

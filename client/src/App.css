@@ -70,3 +70,25 @@
 .chakra-text h1 {
   padding-left: 5px;
 }
+.loginpage {
+  padding-top: 100px;
+  padding-left: 60vh;
+  padding-right: 50vh;
+}
+.loginmodal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 45vh;
+}
+.signuppage {
+  padding-top: 100px;
+  padding-left: 60vh;
+  padding-right: 50vh;
+}
+.signupmodal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 55vh;
+}

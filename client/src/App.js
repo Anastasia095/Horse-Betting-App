@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Races from './pages/Races';
+// import RaceByDay from './pages/Races';
 import Tournaments from './pages/Tournament';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -46,16 +47,20 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <div>
             <Routes>
-            <Route 
-                path="/" 
+              <Route
+                path="/"
                 element={<Home />}
               />
-              <Route 
-                path="/Home" 
+              <Route
+                path="/Home"
                 element={<Home />}
               />
               <Route
                 path='/races'
+                element={<Races />}
+              />
+              <Route
+                path='/events/:eventid'
                 element={<Races />}
               />
               <Route
@@ -74,8 +79,8 @@ function App() {
                 path="/signup"
                 element={<Signup />}
               />
-               <Route 
-                path="/payment" 
+              <Route
+                path="/payment"
                 element={<Payment />}
               />
               <Route 

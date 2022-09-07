@@ -78,3 +78,13 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+export const QUERY_BETS = gql`
+  query bets {
+    bets {
+      user
+      horse
+      price
+    }
+  }
+`;
