@@ -5,7 +5,8 @@ import Calendar from 'react-calendar';
 
 function RaceCalendar () {
   const [date, setDate] = useState(new Date());
-
+  console.log(date);
+    
   return (
         <div className='app aside'>
             <h1 className='text-center'>Enter Race Day</h1>

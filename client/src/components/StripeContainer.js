@@ -7,10 +7,16 @@ const PUBLIC_KEY = "pk_test_51LeOcxHKuC9rfCQDnjk3AtrdM8uJa5Aiqh0IdrArpPTgskuQgPH
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
-export default function StripeContainer() {
+export default function StripeContainer({amount}) {
+    if (!amount) {
+        return <h3>No payAmount Yet</h3>;
+      }
+    const betSum = amount;
+    console.log("BETSUM " + betSum);
     return (
         <Elements stripe={stripeTestPromise}>
-            <PaymentForm />
+            <PaymentForm 
+            pay = {betSum}/>
         </Elements>
     )
 }
