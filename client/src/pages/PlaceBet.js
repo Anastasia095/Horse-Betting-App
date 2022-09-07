@@ -5,6 +5,7 @@ import { QUERY_HORSES } from '../utils/queries';
 import { useParams } from 'react-router-dom';
 import { ADD_BETS } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
+import StripeContainer from '../components/StripeContainer';
 // import {
 //     Button,
 // } from '@chakra-ui/react'
@@ -22,13 +23,13 @@ function Placebet() {
         console.log(error);
     }
     const [horses, updateHorses] = useState([]);
+    const [showItem, setShowItem] = useState(false);
     const [formState, setFormState] = useState({
         price: ''
     });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-
         setFormState({
             ...formState,
             [name]: value,
@@ -41,7 +42,7 @@ function Placebet() {
         if (loading === false && data) {
             updateHorses(data.horses);
         }
-    }, [loading, data])
+    }, [loading, data]);
 
     console.log(horses);
     function handleOnDragEnd(result) {
@@ -52,8 +53,11 @@ function Placebet() {
         updateHorses(items);
     }
     const [addBets, { err }] = useMutation(ADD_BETS);
+    const amount = formState.price;
     const bet = (event) => {
         event.preventDefault();
+        setShowItem(true);
+        console.log("AMOUNT" + amount);
         if (err) {
             console.log(err);
         }
@@ -63,7 +67,6 @@ function Placebet() {
             const data = addBets({
                 variables: {
                     horse: horses[0].id_horse,
-                    //currently hardcoded
                     price: parseFloat(formState.price),
                 },
             });
@@ -104,16 +107,20 @@ function Placebet() {
                 </DragDropContext>
             </header>
             <form>
-                <input
-                    className="form-input"
-                    placeholder="Enter bet amount"
-                    name="price"
-                    value={formState.price}
-                    onChange={handleChange}
-                />
-                <button className="btn btn-lg btn-light m-2" onClick={bet}>
-                    Place a Bet!
-                </button>
+                {showItem ? 
+                <StripeContainer
+                    amount={amount}
+                /> : <> <h3>Enter bet amount below</h3>
+                    <input
+                        className="form-input"
+                        placeholder="Enter bet amount"
+                        name="price"
+                        value={formState.price}
+                        onChange={handleChange}
+                    />
+                    <button className="btn btn-lg btn-light m-2" onClick={bet}>
+                        Place a Bet!
+                    </button></>}
             </form>
         </div>
     );

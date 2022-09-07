@@ -23,7 +23,8 @@ const CARD_OPTIONS = {
 	}
 }
 
-export default function PaymentForm() {
+export default function PaymentForm({pay}) {
+    console.log("PAY " + pay);
     const [success, setSuccess ] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
@@ -41,7 +42,7 @@ export default function PaymentForm() {
         try {
             const {id} = paymentMethod
             const response = await axios.post("http://localhost:3000/payment", {
-                amount: 1000,
+                amount: pay,
                 id
             })
 
