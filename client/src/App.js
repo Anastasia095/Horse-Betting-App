@@ -83,8 +83,8 @@ function App() {
                 path="/payment"
                 element={<Payment />}
               />
-              <Route
-                path="/me"
+              <Route 
+                path="/Profile" 
                 element={<Profile />}
               />
               <Route

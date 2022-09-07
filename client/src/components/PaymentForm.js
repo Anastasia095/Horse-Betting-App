@@ -64,7 +64,7 @@ export default function PaymentForm({ pay }) {
     return (
         <>
             {!success ?
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} class="insidebet">
                     <fieldset className="FormGroup">
                         <div className="FormRow">
                             <CardElement options={CARD_OPTIONS} />

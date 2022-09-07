@@ -41,6 +41,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import EditForm from '../EditForm';
 import '../../css/editform.css'
 import Footer from '../Footer';
+import Billing from '../Billing';
 
 interface LinkItemProps {
   name: string;
@@ -48,10 +49,8 @@ interface LinkItemProps {
   src: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, src: '/races'},
-  { name: 'Stats', icon: FiTrendingUp },
-  { name: 'Edit Profile', icon: FiUser },
-  { name: 'Favourites', icon: FiStar },
+  { name: 'Home', icon: FiHome},
+  { name: 'Profile', icon: FiUser },
 ];
 
 export default function SidebarWithHeader({
@@ -83,13 +82,9 @@ export default function SidebarWithHeader({
       <Box ml={{ base: 0, md: 60 }}>
         <div class="EditForm">
           <EditForm />
-          <div>
-            <h1>Billing Information</h1>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>       
+          <Billing />
+        </div>      
+        <Footer />  
       </Box>
       
     </Box>
@@ -228,9 +223,8 @@ const { colorMode, toggleColorMode } = useColorMode();
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              <MenuItem href='/home'>Home</MenuItem>
               <MenuItem>Profile</MenuItem>
-              <MenuItem>Stats</MenuItem>
-              <MenuItem>Settings</MenuItem>
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
             </MenuList>

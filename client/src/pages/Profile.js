@@ -30,7 +30,7 @@ const Profile = () => {
 
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to="/me" />;
+    return <Navigate to="/profile" />;
   }
 
   // if (loading) {
@@ -41,10 +41,6 @@ const Profile = () => {
     return (
       <div>
         <SimpleSidebar />
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
       </div>
       
     );
