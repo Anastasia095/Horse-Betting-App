@@ -13,4 +13,6 @@ This website is...
 - Express.js
 - MongoDB
 - Mongoose
-
+- Bcrypt
+- JWT
+- React Beautiful DND
