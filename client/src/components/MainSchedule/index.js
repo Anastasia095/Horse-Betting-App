@@ -13,11 +13,12 @@ import {
 
 import { useQuery } from '@apollo/client';
 import { QUERY_RACES_TODAY } from '../../utils/queries';
+// import { useParams } from 'react-router-dom';
+// const axios = require("axios");
 var moment = require('moment');
 
 const MainSchedule = () => {
 
-    console.log(moment().format('YYYY[-]MM[-]DD'))
     const { data, loading } = useQuery(QUERY_RACES_TODAY, {
         variables: {
             date: moment().format('YYYY[-]MM[-]DD')

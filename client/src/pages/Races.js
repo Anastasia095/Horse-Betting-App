@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import RaceCalendar from '../components/Calendar';
-import MainSchedule from '../components/MainSchedule';
+import RaceDay from '../components/raceDay';
 import '../css/calendar.css'
 import '../css/home.css'
 import Footer from '../components/Footer';
@@ -11,7 +11,7 @@ const Races = () => {
       <Header />
       <div className='racepage'>
         <RaceCalendar/>
-        <MainSchedule/>
+        <RaceDay/>
       </div> 
       <Footer />
     </div>
