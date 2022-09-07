@@ -223,9 +223,8 @@ const { colorMode, toggleColorMode } = useColorMode();
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              <MenuItem href='/home'>Home</MenuItem>
               <MenuItem>Profile</MenuItem>
-              <MenuItem>Stats</MenuItem>
-              <MenuItem>Settings</MenuItem>
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
             </MenuList>
