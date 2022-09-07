@@ -100,7 +100,7 @@ export default function WithSubnavigation() {
           </Button> */}
           {Auth.loggedIn() ? (
             <>
-              <Button  as={'a'} className="btn btn-lg btn-primary m-2" variant={'link'} href={'/me'}>
+              <Button  as={'a'} className="btn btn-lg btn-primary m-2" variant={'link'} href={'/profile'}>
                 View My Profile
               </Button>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>

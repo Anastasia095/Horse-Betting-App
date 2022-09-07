@@ -67,7 +67,7 @@ export default function PaymentForm() {
                     <CardElement options={CARD_OPTIONS}/>
                 </div>
             </fieldset>
-            <button>Pay</button>
+            <button classs="stripebutton">Pay</button>
         </form>
         :
        <div>
