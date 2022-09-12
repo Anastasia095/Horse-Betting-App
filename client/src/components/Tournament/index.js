@@ -46,7 +46,7 @@ function Tournament() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Final Space Characters</h1>
+          <h1>Predict winning order!</h1>
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="characters">
               {(provided) => (
@@ -73,9 +73,9 @@ function Tournament() {
             </Droppable>
           </DragDropContext>
         </header>
-        <p>
+        {/* <p>
           Images from <a href="https://final-space.fandom.com/wiki/Final_Space_Wiki">Final Space Wiki</a>
-        </p>
+        </p> */}
       </div>
     );
   }

@@ -3,6 +3,9 @@ const { Races, Horses } = require('../models');
 const axios = require("axios");
 var moment = require('moment');
 
+// const CronJob = require('../node_modules/cron/lib/cron.js');
+var CronJob = require('cron').CronJob;
+
 const options = {
   method: 'GET',
   url: 'https://horse-racing-usa.p.rapidapi.com/racecards',
@@ -14,25 +17,11 @@ const options = {
   }
 };
 
-if (typeof localStorage === "undefined" || localStorage === null) {
-  var LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./scratch');
-}
-function hasOneDayPassed() {
-  var date = new Date().toLocaleDateString();
-  console.log(date)
-  if (localStorage.getItem("app_date") == date)
-    return false;
-
-  localStorage.setItem("app_date", date);
-  return true;
-}
-
-exports.runOncePerDay = () => {
-  if (!hasOneDayPassed()) {
-    console.log("FALSE");
-    return false;
-  }
+console.log('Before job instantiation');
+const job = new CronJob('00 00 00 * * *', function() {
+  // const job = new CronJob('0 */10 * * * *', function() {
+	const d = new Date();
+	console.log('Midnight:', d);
   const data = axios.request(options).then(function (response) {
     console.log(response);
     console.log(response.data);
@@ -101,5 +90,29 @@ exports.runOncePerDay = () => {
   }).catch(function (error) {
     console.error(error);
   });
+});
+console.log('After job instantiation');
+job.start();
 
-};
+// if (typeof localStorage === "undefined" || localStorage === null) {
+//   var LocalStorage = require('node-localstorage').LocalStorage;
+//   localStorage = new LocalStorage('./scratch');
+// }
+// function hasOneDayPassed() {
+//   var date = new Date().toLocaleDateString();
+//   console.log(date)
+//   if (localStorage.getItem("app_date") == date)
+//     return false;
+
+//   localStorage.setItem("app_date", date);
+//   return true;
+// }
+
+// exports.runOncePerDay = () => {
+//   if (!hasOneDayPassed()) {
+//     console.log("FALSE");
+//     return false;
+//   }
+  
+
+// };
